@@ -4,5 +4,11 @@
     <p>
       {{device.description}}
     </p>
+    <p *ngIf="device.getType() == type.Toggle">
+      Toggled: {{device.isToggled()}}
+    </p>
+  </div>
+  <div class="card-action">
+    <a *ngIf="device.getType() == type.Toggle" (click)="device.toggle()">Toggle</a>
   </div>
 </div>
