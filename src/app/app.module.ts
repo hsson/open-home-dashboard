@@ -7,11 +7,13 @@ import { MaterializeModule } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 import { RoutingModule } from './routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DeviceCardComponent } from './device-card/device-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    DeviceCardComponent,
   ],
   imports: [
     BrowserModule,

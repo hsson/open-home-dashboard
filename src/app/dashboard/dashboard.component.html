@@ -1,1 +1,5 @@
-<h1>I'm a dashboard!!</h1>
+<div class="row">
+  <div class="col s6" *ngFor="let device of devices">
+    <app-device-card [device]="device"></app-device-card>
+  </div>
+</div>
