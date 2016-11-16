@@ -5,7 +5,7 @@ export class SimpleToggle implements IToggleDevice {
     public name: string;
     public description: string;
     private type: SmartDeviceType = SmartDeviceType.Toggle;
-    private toggled: boolean;
+    private toggled: boolean = false;
 
     constructor(name: string, description: string = 'You can toggle it on and off') {
         this.name = name;
