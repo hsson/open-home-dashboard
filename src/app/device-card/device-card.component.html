@@ -1,14 +1,20 @@
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{device.name}}</span>
-    <p>
-      {{device.description}}
-    </p>
-    <p *ngIf="device.getType() == type.Toggle">
-      Toggled: {{device.isToggled()}}
-    </p>
+<div [ngSwitch]="device.getType()">
+  <div *ngSwitchCase="type.Toggle" class="card" (click)="device.toggle()" [class.green]="device.isToggled()">
+    <div class="card-content" [class.white-text]="device.isToggled()">
+      <span class="card-title">{{device.name}}</span>
+      <p>
+        {{device.description}}
+      </p>
+      <h4>{{device.isToggled() ? 'On' : 'Off'}}</h4>
+    </div>
   </div>
-  <div class="card-action">
-    <a *ngIf="device.getType() == type.Toggle" style="cursor:pointer" (click)="device.toggle()">Toggle</a>
+
+  <div *ngSwitchDefault class="card">
+    <div class="card-content">
+      <span class="card-title">{{device.name}}</span>
+      <p>
+        {{device.description}}
+      </p>
+    </div>
   </div>
 </div>

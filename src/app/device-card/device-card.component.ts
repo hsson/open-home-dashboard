@@ -19,4 +19,7 @@ export class DeviceCardComponent implements OnInit {
 
   }
 
+  private hasAction(): boolean {
+    return this.device.getType() === this.type.Toggle;
+  }
 }
