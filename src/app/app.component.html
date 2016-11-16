@@ -1,16 +1,26 @@
 <header>
   <nav>
     <div class="nav-wrapper">
-      <a routerLink="/dashboard" class="brand-logo center">Open Home Dashboard</a>
+      <a routerLink="/dashboard" class="brand-logo center header light">Open Home Dashboard</a>
       <a materialize="sideNav" [materializeParams]="[{edge:'left', closeOnClick: false}]" href="#" data-activates="main-menu" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="side-nav fixed" id="main-menu">
-        <li><a routerLink="/dashboard" routerLinkActive="active" class="active">Home</a></li>
+        <li>
+          <div class="sideView">
+            <div class="background">
+              <img src="/assets/bkg.png">
+            </div>
+            <h5 class="header light">Time: {{clock | async | date:'hh:mm:ss'}}</h5>
+          </div>
+        </li>
+        <li routerLinkActive="active"><a routerLink="/dashboard" routerLinkActive="active" class="active">Home</a></li>
       </ul>
     </div>
   </nav>
 </header>
 <main>
-  <router-outlet></router-outlet>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </main>
 <footer>
 
