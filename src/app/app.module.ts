@@ -8,12 +8,15 @@ import { AppComponent } from './app.component';
 import { RoutingModule } from './routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DeviceCardComponent } from './device-card/device-card.component';
+import { DeviceComponent } from './device/device.component';
+import { DeviceService } from './device.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     DeviceCardComponent,
+    DeviceComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,10 @@ import { DeviceCardComponent } from './device-card/device-card.component';
     MaterializeModule,
     RoutingModule
   ],
-  providers: [Title],
+  providers: [
+    Title,
+    DeviceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
