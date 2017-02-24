@@ -15,12 +15,14 @@ const TITLE = `Dashboard | ${globals.TITLE_SUFFIX}`;
 })
 export class DashboardComponent implements OnInit {
 
-  devices: ISmartDevice[] = [new SimpleToggle('Smart Lamp', 'A lamp that can be turned on or off')];
+  devices: ISmartDevice[];
 
   constructor(
     private titleService: Title,
     private deviceService: DeviceService
-  ) { }
+  ) { 
+    this.devices = [new SimpleToggle(0,'Smart Lamp', 'A lamp that can be turned on or off', deviceService)];
+  }
 
   ngOnInit() {
     this.titleService.setTitle(TITLE);
