@@ -10,7 +10,7 @@ import { SimpleToggle } from './shared/toggle.device';
 
 @Injectable()
 export class DeviceService {
-  controllerUrl: string = 'http://192.168.0.108:8000/api';
+  controllerUrl: string = 'http://95.80.43.89:8000/api';
 
   constructor(
     private http: Http
@@ -34,11 +34,12 @@ export class DeviceService {
 
   parseResponse(response: JSON): Promise<ISmartDevice[]> {
     let result: ISmartDevice[] = new Array;
-    for (var key in response) {
-      var device = response[key];
-      var type: SmartDeviceType; 
-      switch (device["type"]) {
-            case 0: result.push(new SimpleToggle(device["id"], device["name"], device["description"], this)); break;
+    for (let key in response) {
+      if (response.hasOwnProperty(key)) {
+        let device = response[key];
+        switch (device['type']) {
+            case 0: result.push(new SimpleToggle(device['id'], device['name'], device['description'], this)); break;
+        }
       }
     }
     return Promise.resolve(result);
