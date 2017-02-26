@@ -1,4 +1,4 @@
-export enum SmartDeviceType { Unknown, Toggle, Sensor, DhtSensor }
+export enum SmartDeviceType { Unknown = -1, Toggle = 0, Sensor = 1, DhtSensor = 2}
 
 export interface ISmartDevice {
     id: number;

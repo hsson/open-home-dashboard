@@ -29,12 +29,4 @@ export class GeneralDevice implements ISmartDevice {
     public getType(): SmartDeviceType {
         return this.type;
     }
-
-    public toggle(): void {
-        this.toggled = !this.toggled;
-    }
-
-    public isToggled(): boolean {
-        return this.toggled;
-    }
 }

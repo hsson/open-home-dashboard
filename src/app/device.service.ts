@@ -6,7 +6,8 @@ import 'rxjs/add/operator/toPromise';
 
 import { IToggleDevice, ISmartDevice } from './shared/device.interface';
 import { SimpleToggle } from './shared/toggle.device';
-
+import { GeneralDevice } from './shared/general.device';
+import { DhtSensor } from './shared/dhtsensor.device';
 
 @Injectable()
 export class DeviceService {
@@ -15,6 +16,12 @@ export class DeviceService {
   constructor(
     private http: Http
   ) { }
+
+  getSensor(id: number): Promise<number[]> {
+    return this.http.get(`${this.controllerUrl}/sensors/${id}`)
+      .toPromise()
+      .then(resp => this.parseSensor(resp.json()));
+  }
 
   toggleDevice(id: number): Promise<any> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -32,13 +39,20 @@ export class DeviceService {
       .catch(error => this.handleError(error));
   }
 
+  parseSensor(response: JSON): Promise<number[]> {
+    let value = response['values'];
+    return Promise.resolve(value);
+  }
+
   parseResponse(response: JSON): Promise<ISmartDevice[]> {
     let result: ISmartDevice[] = new Array;
     for (let key in response) {
       if (response.hasOwnProperty(key)) {
         let device = response[key];
         switch (device['type']) {
-            case 0: result.push(new SimpleToggle(device['id'], device['name'], device['description'], this)); break;
+            case SmartDeviceType.Toggle: result.push(new SimpleToggle(device['id'], device['name'], device['description'], this)); break;
+            case SmartDeviceType.DhtSensor: result.push(new DhtSensor(device['id'], device['name'], device['description'], this)); break;
+            default: result.push(new GeneralDevice(device['id'], device['name'], device['description'], device['type'], device['pin'])); break;
         }
       }
     }
