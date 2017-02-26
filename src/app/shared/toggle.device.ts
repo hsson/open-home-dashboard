@@ -29,7 +29,17 @@ export class SimpleToggle implements IToggleDevice {
 
     public toggle(): void {
         this.deviceService.toggleDevice(this.id)
-            .then((value) => this.toggled = !this.toggled);
+            .then(value => this.toggled = !this.toggled);
+    }
+
+    public off(): void {
+        this.deviceService.offDevice(this.id)
+            .then(value => this.toggled = false);
+    }
+
+    public on(): void {
+        this.deviceService.onDevice(this.id)
+            .then(value => this.toggled = true);
     }
 
     public isToggled(): boolean {

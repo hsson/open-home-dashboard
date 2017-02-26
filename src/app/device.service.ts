@@ -32,6 +32,24 @@ export class DeviceService {
       .catch(this.handleError);
   }
 
+  offDevice(id: number): Promise<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(`${this.controllerUrl}/sensors/${id}/a`, {}, options)
+      .toPromise()
+      .then(response => console.log(response.json()))
+      .catch(this.handleError);
+  }
+
+  onDevice(id: number): Promise<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(`${this.controllerUrl}/sensors/${id}/p`, {}, options)
+      .toPromise()
+      .then(response => console.log(response.json()))
+      .catch(this.handleError);
+  }
+
   getDevices(): Promise<ISmartDevice[]> {
     return this.http.get(`${this.controllerUrl}/sensors`)
       .toPromise()

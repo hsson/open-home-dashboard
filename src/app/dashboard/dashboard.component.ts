@@ -30,4 +30,28 @@ export class DashboardComponent implements OnInit {
       .then(devices => this.devices = devices);
   }
 
+  allOff() {
+    this.devices.forEach(device => {
+      if (device.getType() === SmartDeviceType.Toggle) {
+        (device as SimpleToggle).off();
+      }
+    });
+  }
+
+  allOn() {
+     this.devices.forEach(device => {
+      if (device.getType() === SmartDeviceType.Toggle) {
+        (device as SimpleToggle).on();
+      }
+    });
+  }
+
+  allToggle() {
+     this.devices.forEach(device => {
+      if (device.getType() === SmartDeviceType.Toggle) {
+        (device as SimpleToggle).toggle();
+      }
+    });
+  }
+
 }

@@ -1,7 +1,5 @@
 import { ISmartDevice, SmartDeviceType } from './device.interface';
 import { DeviceService } from '../device.service';
-import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
-
 
 export class DhtSensor implements ISmartDevice {
 
