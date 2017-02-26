@@ -1,0 +1,37 @@
+runtime: python27
+threadsafe: true
+
+handlers:
+- url: /.well-known
+  static_dir: well-known
+  http_headers:
+    Content-Type: text/plain
+#   secure: always
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+#   secure: always
+- url: /
+  static_files: dist/index.html
+  upload: dist/index.html
+- url: /dashboard
+  static_files: dist/index.html
+  upload: dist/index.html
+#   secure: always
+# - url: /event/(.*)
+#   static_files: dist/index.html
+#   upload: dist/index.html
+#   secure: always
+- url: /
+  static_dir: dist
+#   secure: always
+
+skip_files:
+  - ^(.*/)?#.*#
+  - ^(.*/)?.*~
+  - ^(.*/)?.*\.py[co]
+  - ^(.*/)?.*/RCS/.*
+  - ^(.*/)?\..*
+  - ^(node_modules/.*)
+  - ^(e2e/.*)
+  - ^(src/.*)
